@@ -10,7 +10,6 @@ import PortraitPage from '../portrait-page/portrait.component';
 
 const PicturePage = ({ history }) => {
     const isLanscape = useSelector(({ orientation: { isLanscape } }) => isLanscape);
-    console.log(history.location.pathname);
     const getMainFolderFetch = fetchPicturesStart(history.location.pathname);
     return (
         <div>

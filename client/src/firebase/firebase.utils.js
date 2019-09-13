@@ -33,7 +33,7 @@ export const getDownloadPictureURL = async listAll => {
         const url = await item.getDownloadURL();
         pictureToPush.push(url);
     });
-    await timeOut(400);
+    await timeOut(500);
     return pictureToPush;
 };
 

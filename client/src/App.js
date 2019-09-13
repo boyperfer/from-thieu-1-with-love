@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import { changeOrientation } from './redux/orientation/orientation.actions';
@@ -18,7 +18,6 @@ const PicturePageLoader = WithLoader(PicturePage);
 
 const App = () => {
     const dispatch = useDispatch();
-    const isFetching = useSelector(({ picture: { isFetching } }) => isFetching);
 
     useEffect(() => {
         const getOrientation = () => dispatch(changeOrientation());
@@ -37,22 +36,10 @@ const App = () => {
             <Switch>
                 <Suspense fallback={<Loader />}>
                     <Route exact path='/' component={HomePage} />
-                    <Route
-                        path='/mat-thu'
-                        render={() => <PicturePageLoader isFetching={isFetching} />}
-                    />
-                    <Route
-                        path='/xem-phim'
-                        render={() => <PicturePageLoader isFetching={isFetching} />}
-                    />
-                    <Route
-                        path='/van-nghe'
-                        render={() => <PicturePageLoader isFetching={isFetching} />}
-                    />
-                    <Route
-                        path='/ve-chai'
-                        render={() => <PicturePageLoader isFetching={isFetching} />}
-                    />
+                    <Route path='/mat-thu' render={() => <PicturePageLoader />} />
+                    <Route path='/xem-phim' render={() => <PicturePageLoader />} />
+                    <Route path='/van-nghe' render={() => <PicturePageLoader />} />
+                    <Route path='/ve-chai' render={() => <PicturePageLoader />} />
                 </Suspense>
             </Switch>
         </AppContainer>
