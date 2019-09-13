@@ -3,26 +3,24 @@ import styled, { css } from 'styled-components';
 import mainStyle from '../../styles/main';
 
 const {
-    device: { mobileLanscape, mobileSLanscape, mobile, mobileS }
+    device: { mobileLanscape, mobileSLanscape, mobile, mobileS },
+    variables: { black, white }
 } = mainStyle;
 
 const iphoneSystem = css`
     @media ${mobileLanscape} {
         line-height: unset;
-        background-color: transparent;
         font-size: 8rem;
     }
 
     @media ${mobileSLanscape} {
         line-height: unset;
-        background-color: transparent;
         font-size: 7rem;
     }
 `;
 
 const androidSystem = css`
     line-height: unset;
-    background-color: transparent;
     font-size: 3.5rem;
 `;
 
@@ -124,8 +122,9 @@ export const VideoContent = styled.video`
     }
 
     &::cue {
-        color: white;
-        background-color: transparent;
+        color: ${white};
+        background-color: ${black}99;
+        border: none;
         font-size: 3.5rem;
         font-family: 'Martel Sans', sans-serif;
         text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
