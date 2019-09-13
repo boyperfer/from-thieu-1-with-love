@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { Element } from 'react-scroll';
 import { useDispatch } from 'react-redux';
 
-import { fetchPicturesStart } from '../../redux/picture/picture.actions';
-
 import CollectionPicture from '../../components/collection-picture/collection-picture.component';
 import Header from '../../components/header/header.component';
 import SmoothScroll from '../../components/smooth-scroll/smooth-scroll.component';
@@ -26,7 +24,7 @@ const PictureDevice = ({ history, getMainFolderFetch }) => {
     useEffect(() => {
         dispatch(getSizeDevice);
         return () => {};
-    }, []);
+    }, [dispatch, getSizeDevice]);
     const isVanNghe = history.location.pathname === '/van-nghe' ? true : false;
     return (
         <PictureDeviceContainer isVanNghe={isVanNghe}>

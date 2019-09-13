@@ -18,6 +18,7 @@ const PicturePageLoader = WithLoader(PicturePage);
 
 const App = () => {
     const dispatch = useDispatch();
+    const isFetching = useSelector(({ picture: { isFetching } }) => isFetching);
 
     useEffect(() => {
         const getOrientation = () => dispatch(changeOrientation());
@@ -36,10 +37,22 @@ const App = () => {
             <Switch>
                 <Suspense fallback={<Loader />}>
                     <Route exact path='/' component={HomePage} />
-                    <Route path='/mat-thu' render={() => <PicturePageLoader />} />
-                    <Route path='/xem-phim' render={() => <PicturePageLoader />} />
-                    <Route path='/van-nghe' render={() => <PicturePageLoader />} />
-                    <Route path='/ve-chai' render={() => <PicturePageLoader />} />
+                    <Route
+                        path='/mat-thu'
+                        render={() => <PicturePageLoader isFetching={isFetching} />}
+                    />
+                    <Route
+                        path='/xem-phim'
+                        render={() => <PicturePageLoader isFetching={isFetching} />}
+                    />
+                    <Route
+                        path='/van-nghe'
+                        render={() => <PicturePageLoader isFetching={isFetching} />}
+                    />
+                    <Route
+                        path='/ve-chai'
+                        render={() => <PicturePageLoader isFetching={isFetching} />}
+                    />
                 </Suspense>
             </Switch>
         </AppContainer>
