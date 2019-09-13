@@ -1,0 +1,7 @@
+const VideoActionTypes = {
+    FETCH_VIDEO_START: 'FETCH_VIDEO_START',
+    FETCH_VIDEO_SUCCESS: 'FETCH_VIDEO_SUCCESS',
+    FETCH_VIDEO_FAILURE: 'FETCH_VIDEO_FAILURE'
+};
+
+export default VideoActionTypes;

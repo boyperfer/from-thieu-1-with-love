@@ -2,7 +2,7 @@ import PictureActionTypes from './picture.types';
 
 const INITIAL_STATE = {
     pictures: null,
-    isFetching: null,
+    isFetching: false,
     errorMessage: undefined,
     isVeChai: true,
     getLink: ''

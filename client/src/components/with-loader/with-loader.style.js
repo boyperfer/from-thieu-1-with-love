@@ -44,7 +44,6 @@ export const WithLoaderContainer = styled.div`
     align-items: center;
     height: 100vh;
     background-color: ${white};
-    font-family: 'ZCOOL KuaiLe', cursive;
 `;
 
 export const LogoLoading = styled(Logo)`

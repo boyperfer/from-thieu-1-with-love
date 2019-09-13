@@ -16,13 +16,6 @@ firebase.initializeApp(config);
 
 export const storage = firebase.storage();
 
-export const videoFirebase = (urlVideo, setUrlVideo) => {
-    const fileFirebase = storage.refFromURL(urlVideo);
-    fileFirebase.getDownloadURL().then(url => {
-        setUrlVideo(url);
-    });
-};
-
 const timeOut = ms => {
     return new Promise(resolve => setTimeout(resolve, ms));
 };
@@ -37,14 +30,8 @@ export const getDownloadPictureURL = async listAll => {
     return pictureToPush;
 };
 
-export const imageBackgroundFirebase = mainFolder => deviceFolder => setImage => {
-    const storageRef = storage.ref();
-    const listRef = storageRef.child(`${mainFolder}/${deviceFolder}`);
-    listRef.listAll().then(res => {
-        res.items.forEach(item => {
-            item.getDownloadURL().then(url => {
-                setImage(url);
-            });
-        });
-    });
+export const getDownloadVideoUrl = async link => {
+    const url = await link.getDownloadURL();
+    await timeOut(300);
+    return url;
 };

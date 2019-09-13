@@ -2,21 +2,18 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import WebVTT from '../../assets/video/subtitle-vn.vtt';
-import { videoFirebase } from '../../firebase/firebase.utils.js';
 
 import { VideoContainer, VideoContent, VideoSource } from './video-t1.style';
 
 const VideoT1 = () => {
     const [system, setSystem] = useState('');
-    const isLanscape = useSelector(({ orientation: { isLanscape } }) => isLanscape);
     const videoRef = useRef(null);
-    const [urlVideo, setUrlVideo] = useState('');
-
+    const linkVideo = useSelector(({ video: { getLink } }) => getLink);
+    const isFetchingVideo = useSelector(({ video: { isFetching } }) => isFetching);
     useEffect(() => {
-        videoFirebase('gs://fromthieu1withlove.appspot.com/video/t1.mp4', setUrlVideo);
-        videoRef.current.src = urlVideo;
+        videoRef.current.src = linkVideo;
         return () => {};
-    }, [urlVideo]);
+    }, [linkVideo]);
     useEffect(() => {
         const getMobileOperatingSystem = () => {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -47,6 +44,7 @@ const VideoT1 = () => {
             try {
                 await timeOut(300);
                 const tracks = await videoRef.current.textTracks;
+
                 const trackCues = await tracks[0].cues;
 
                 const trackCuesArray = Object.keys(trackCues).map(key => trackCues[key]);
@@ -66,11 +64,9 @@ const VideoT1 = () => {
                 console.log(err);
             }
         };
-        if (isLanscape) {
-            getTrack();
-        }
+        getTrack();
         return () => {};
-    }, [isLanscape]);
+    }, [isFetchingVideo]);
     return (
         <VideoContainer>
             <VideoContent system={system} controls volume='1' ref={videoRef}>

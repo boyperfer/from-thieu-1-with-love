@@ -1,9 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-// import thunk from 'redux-thunk';
 import createSagaMiddlewar from 'redux-saga';
 
-import { fetchPicturesStart } from './picture/picture.sagas';
+import rootSage from './root-saga';
 
 import rootReducer from './root-reducer';
 
@@ -17,6 +16,6 @@ if (process.env.NODE_ENV === 'development') {
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
-sagaMiddleware.run(fetchPicturesStart);
+sagaMiddleware.run(rootSage);
 
 export default store;
