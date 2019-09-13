@@ -1,4 +1,4 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 import { storage } from '../../firebase/firebase.utils';
 
@@ -8,13 +8,15 @@ import { getDownloadPictureURL } from '../../firebase/firebase.utils';
 
 import PictureActionTypes from './picture.types';
 
+const getLink = ({ picture: { getLink } }) => getLink;
+
 export function* fetchPicturesAsync() {
     try {
+        const getLinkUrl = yield select(getLink);
         const storageRef = storage.ref();
-        const listRef = storageRef.child(`thieu/van-nghe/for-big-devies-1200`);
+        const listRef = storageRef.child(`thieu/${getLinkUrl}`);
         const listAll = yield listRef.listAll();
         const getPicture = yield call(getDownloadPictureURL, listAll);
-        console.log(getPicture);
         yield put(fetchPicturesSuccess(getPicture));
     } catch (error) {
         yield put(fetchPictureFailure(error.massage));

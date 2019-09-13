@@ -12,17 +12,19 @@ import VideoT1 from '../../components/video-t1/video-t1.component';
 
 import { PictureDeviceContainer } from './picture-devices.style';
 
-const PictureDevice = ({ history }) => {
+const PictureDevice = ({ history, getMainFolderFetch }) => {
     const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     const dispatch = useDispatch();
+
     const getScreen =
         w <= 900
             ? 'for-mobiles-900'
             : w >= 900 && w <= 1600
             ? 'for-big-devices-1200'
             : 'for-big-devices-1600';
+    const getSizeDevice = getMainFolderFetch(getScreen);
     useEffect(() => {
-        dispatch(fetchPicturesStart());
+        dispatch(getSizeDevice);
         return () => {};
     }, []);
     const isVanNghe = history.location.pathname === '/van-nghe' ? true : false;

@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     pictures: null,
     isFetching: null,
     errorMessage: undefined,
-    isVeChai: true
+    isVeChai: true,
+    getLink: ''
 };
 
 const pictureReducer = (state = INITIAL_STATE, action) => {
@@ -13,7 +14,8 @@ const pictureReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 pictures: null,
-                isFetching: true
+                isFetching: true,
+                getLink: action.payload
             };
         case PictureActionTypes.FETCH_PICTURES_SUCCESS:
             return {
