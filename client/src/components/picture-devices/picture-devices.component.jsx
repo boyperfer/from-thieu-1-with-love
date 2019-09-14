@@ -16,7 +16,7 @@ const VideoT1Loader = WithLoader(VideoT1);
 
 const PictureDevice = ({ history }) => {
     const isVanNghe = history.location.pathname === '/van-nghe' ? true : false;
-    const isFetching = useSelector(({ picture: { isFetching } }) => isFetching);
+    const isFetching = useSelector(({ video: { isFetching } }) => isFetching);
 
     return (
         <PictureDeviceContainer isVanNghe={isVanNghe}>

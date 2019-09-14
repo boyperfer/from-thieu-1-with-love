@@ -1,7 +1,7 @@
 import VideoActionTypes from './video-t1.types';
 
 const INITIAL_STATE = {
-    isFetching: false,
+    isFetching: true,
     getLink: '',
     message: ''
 };

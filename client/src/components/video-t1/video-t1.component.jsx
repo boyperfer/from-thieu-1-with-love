@@ -64,7 +64,7 @@ const VideoT1 = () => {
                 console.log(err);
             }
         };
-        getTrack();
+        !isFetchingVideo ? getTrack() : timeOut(0);
         return () => {};
     }, [isFetchingVideo]);
     return (

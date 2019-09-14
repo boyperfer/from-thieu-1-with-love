@@ -17,6 +17,8 @@ export function* fetchVideoAsync() {
     }
 }
 
+// export function*
+
 export function* fetchVideoStart() {
     yield takeLatest(PictureActionTypes.FETCH_PICTURES_SUCCESS, fetchVideoAsync);
 }
