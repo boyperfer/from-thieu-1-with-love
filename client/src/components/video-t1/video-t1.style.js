@@ -4,7 +4,7 @@ import mainStyle from '../../styles/main';
 
 const {
     device: { mobileLanscape, mobileSLanscape, mobile, mobileS },
-    variables: { black, white }
+    variables: { white }
 } = mainStyle;
 
 const iphoneSystem = css`
