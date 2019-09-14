@@ -4,7 +4,7 @@ import { animated } from 'react-spring';
 import mainStyle from '../../styles/main';
 
 const {
-    device: { bigScreen }
+    device: { bigScreen, mobileLanscape }
 } = mainStyle;
 
 const getCard = ({ isVeChai }) => {
@@ -42,6 +42,10 @@ export const CardContainer = styled(animated.div)`
     @media ${bigScreen} {
         max-width: 1200px;
         max-height: 800px;
+    }
+
+    @media ${mobileLanscape} {
+        max-width: 630px;
     }
 `;
 
