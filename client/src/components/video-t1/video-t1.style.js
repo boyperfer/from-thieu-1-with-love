@@ -123,7 +123,7 @@ export const VideoContent = styled.video`
 
     &::cue {
         color: ${white};
-        background-color: ${black}99;
+        background-color: transparent;
         border: none;
         font-size: 3.5rem;
         font-family: 'Martel Sans', sans-serif;
