@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
 const enforce = require('express-sslify');
+const path = require('path');
+const request = require('request');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,6 +12,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(cors());
+
+request({ method: 'GET', uri: 'http://www.google.com', gzip: true });
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
