@@ -10,7 +10,7 @@ const {
 const getCard = ({ isVeChai }) => {
     return isVeChai
         ? css`
-              background-position: 50% 15%;
+              background-position: 50% 16%;
           `
         : css`
               background-position: 50% 50%;
