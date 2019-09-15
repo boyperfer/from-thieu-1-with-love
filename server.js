@@ -14,8 +14,6 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(cors());
 app.use(compression());
 
-request({ method: 'GET', uri: 'http://www.google.com', gzip: true });
-
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
 
