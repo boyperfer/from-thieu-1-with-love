@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { selectOnText } from '../../redux/toggle-hidden/toggle-hidden.selectors';
+
 import Header from '../../components/header/header.component';
 
 import { toggleText } from '../../redux/toggle-hidden/toggle-hidden.action';
@@ -15,7 +17,7 @@ import {
 } from './home.styles';
 
 const HomePage = () => {
-    const toggleOnText = useSelector(({ toggle: { onText } }) => onText);
+    const toggleOnText = useSelector(selectOnText);
     const dispatch = useDispatch();
 
     return (

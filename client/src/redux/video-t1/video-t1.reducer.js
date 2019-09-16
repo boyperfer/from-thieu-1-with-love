@@ -2,7 +2,7 @@ import VideoActionTypes from './video-t1.types';
 
 const INITIAL_STATE = {
     isFetching: true,
-    getLink: '',
+    linkVideo: '',
     message: ''
 };
 
@@ -17,7 +17,7 @@ const videoReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isFetching: false,
-                getLink: action.payload
+                linkVideo: action.payload
             };
         case VideoActionTypes.FETCH_VIDEO_FAILURE:
             return {

@@ -1,11 +1,11 @@
 import PictureActionTypes from './picture.types';
 
 const INITIAL_STATE = {
-    pictures: null,
+    images: null,
     isFetching: false,
     errorMessage: undefined,
     isVeChai: true,
-    getLink: ''
+    linkPicture: ''
 };
 
 const pictureReducer = (state = INITIAL_STATE, action) => {
@@ -13,14 +13,14 @@ const pictureReducer = (state = INITIAL_STATE, action) => {
         case PictureActionTypes.FETCH_PICTURES_START:
             return {
                 ...state,
-                pictures: null,
+                images: null,
                 isFetching: true,
-                getLink: action.payload
+                linkPicture: action.payload
             };
         case PictureActionTypes.FETCH_PICTURES_SUCCESS:
             return {
                 ...state,
-                pictures: action.payload,
+                images: action.payload,
                 isFetching: false
             };
         case PictureActionTypes.FETCH_PICTURES_FAILURE:

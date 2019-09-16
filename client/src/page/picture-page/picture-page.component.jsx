@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import is from 'is_js';
 
+import { selectIsFetching } from '../../redux/picture/picture.selectors';
+import { selectIsLandscape } from '../../redux/orientation/orientation.selectors';
+
 import { fetchPicturesStart } from '../../redux/picture/picture.actions';
 
 import WithLoader from '../../components/with-loader/with-loader.component';
@@ -17,8 +20,8 @@ const PortraitPage = lazy(() => import('../../page/portrait-page/portrait.compon
 const PictureDeviceLoader = WithLoader(PictureDevice);
 
 const PicturePage = ({ history }) => {
-    const isLanscape = useSelector(({ orientation: { isLanscape } }) => isLanscape);
-    const isFetching = useSelector(({ picture: { isFetching } }) => isFetching);
+    const isLanscape = useSelector(selectIsLandscape);
+    const isFetching = useSelector(selectIsFetching);
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { selectIsFetchingVideo, selectLinkVideo } from '../../redux/video-t1/video-t1.selectors';
+
 import WebVTT from '../../assets/video/subtitle-vn.vtt';
 
 import { VideoContainer, VideoContent, VideoSource } from './video-t1.style';
@@ -8,8 +10,8 @@ import { VideoContainer, VideoContent, VideoSource } from './video-t1.style';
 const VideoT1 = () => {
     const [system, setSystem] = useState('');
     const videoRef = useRef(null);
-    const linkVideo = useSelector(({ video: { getLink } }) => getLink);
-    const isFetchingVideo = useSelector(({ video: { isFetching } }) => isFetching);
+    const linkVideo = useSelector(selectLinkVideo);
+    const isFetchingVideo = useSelector(selectIsFetchingVideo);
     useEffect(() => {
         videoRef.current.src = linkVideo;
         return () => {};

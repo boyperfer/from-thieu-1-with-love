@@ -2,10 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-scroll';
 
+import { selectOnBackground } from '../../redux/toggle-hidden/toggle-hidden.selectors';
+
 import { SmoothScrollContainer, ArrowDown, ArrowUp, ArrowContainer } from './smooth-scroll.style';
 
 const SmoothScroll = () => {
-    const toggleOnBackground = useSelector(({ toggle: { onBackground } }) => onBackground);
+    const toggleOnBackground = useSelector(selectOnBackground);
     return (
         <SmoothScrollContainer toggleOnBackground={toggleOnBackground}>
             <ArrowContainer>

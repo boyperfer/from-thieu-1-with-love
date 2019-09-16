@@ -2,16 +2,18 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
+import { selectImages, selectIsFetchingDeck } from '../../redux/picture/picture.selectors';
+
 import Deck from '../Deck/deck.component';
 
 import { CollectionPictureContainer } from './collection-picture.style';
 
 const CollectionPicture = () => {
-    const picture = useSelector(({ picture: { pictures } }) => pictures);
-    const isFetching = useSelector(({ picture: { pictures } }) => !!pictures);
+    const images = useSelector(selectImages);
+    const isFetching = useSelector(selectIsFetchingDeck);
     return (
         <CollectionPictureContainer>
-            {isFetching ? <Deck picture={picture} /> : null}
+            {!isFetching ? <Deck images={images} /> : null}
         </CollectionPictureContainer>
     );
 };

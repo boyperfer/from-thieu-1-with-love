@@ -4,6 +4,8 @@ import { useGesture } from 'react-use-gesture';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { selectIsVeChai } from '../../redux/picture/picture.selectors';
+
 import { CardContainer, Card, DeckContainer } from './deck.style';
 
 // These two are just helpers, they curate spring data, values that are later being interpolated into css
@@ -13,10 +15,10 @@ const from = i => ({ x: 0, rot: 0, scale: 1.5, y: -1000 });
 const trans = (r, s) =>
     `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`;
 
-const Deck = ({ history, picture }) => {
-    const isVeChai = useSelector(({ picture: { isVeChai } }) => isVeChai);
+const Deck = ({ history, images }) => {
+    const isVeChai = useSelector(selectIsVeChai);
     const [gone] = useState(() => new Set()); // The set flags all the cards that are flicked out
-    const [props, set] = useSprings(picture.length, i => ({ ...to(i), from: from(i) })); // Create a bunch of springs using the helpers above
+    const [props, set] = useSprings(images.length, i => ({ ...to(i), from: from(i) })); // Create a bunch of springs using the helpers above
     // Create a gesture, we're interested in down-state, delta (current-pos - click-pos), direction and velocity
     const bind = useGesture(
         ({ args: [index], down, delta: [xDelta], distance, direction: [xDir], velocity }) => {
@@ -37,7 +39,7 @@ const Deck = ({ history, picture }) => {
                     config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 }
                 };
             });
-            if (!down && gone.size === picture.length)
+            if (!down && gone.size === images.length)
                 setTimeout(() => gone.clear() || set(i => to(i)), 600);
         }
     );
@@ -55,9 +57,9 @@ const Deck = ({ history, picture }) => {
                 }}
             >
                 {history.location.pathname === '/ve-chai' ? (
-                    <Card imageUrl={picture[i]} isVeChai={isVeChai} />
+                    <Card imageUrl={images[i]} isVeChai={isVeChai} />
                 ) : (
-                    <Card imageUrl={picture[i]} />
+                    <Card imageUrl={images[i]} />
                 )}
             </CardContainer>
         </DeckContainer>

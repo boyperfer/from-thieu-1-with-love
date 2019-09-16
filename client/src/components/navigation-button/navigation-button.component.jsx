@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import { selectOnBackground } from '../../redux/toggle-hidden/toggle-hidden.selectors';
+
 import { toggleBackground } from '../../redux/toggle-hidden/toggle-hidden.action';
 
 import {
@@ -16,7 +18,7 @@ import {
 } from './navigation-button.styles';
 
 const NavigationButton = ({ history }) => {
-    const toggleOnBackground = useSelector(({ toggle: { onBackground } }) => onBackground);
+    const toggleOnBackground = useSelector(selectOnBackground);
     const dispatch = useDispatch();
 
     return (

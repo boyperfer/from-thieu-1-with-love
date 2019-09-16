@@ -2,12 +2,14 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { selectOnBackground } from '../../redux/toggle-hidden/toggle-hidden.selectors';
+
 import { toggleBackground } from '../../redux/toggle-hidden/toggle-hidden.action';
 
 import { Logo, LogoContainer } from './logo-t1.style';
 
 const LogoT1 = ({ history, isHome }) => {
-    const toggleOnBackground = useSelector(({ toggle: { onBackground } }) => onBackground);
+    const toggleOnBackground = useSelector(selectOnBackground);
     const dispatch = useDispatch();
 
     return history.location.pathname === '/' ? (

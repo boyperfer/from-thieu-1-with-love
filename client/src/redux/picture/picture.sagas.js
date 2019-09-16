@@ -8,11 +8,11 @@ import { getDownloadPictureURL } from '../../firebase/firebase.utils';
 
 import PictureActionTypes from './picture.types';
 
-const getLink = ({ picture: { getLink } }) => getLink;
+const linkPicture = ({ picture: { linkPicture } }) => linkPicture;
 
 export function* fetchPicturesAsync() {
     try {
-        const getLinkUrl = yield select(getLink);
+        const getLinkUrl = yield select(linkPicture);
         const storageRef = storage.ref();
         const listRef = storageRef.child(`thieu/${getLinkUrl}`);
         const listAll = yield listRef.listAll();

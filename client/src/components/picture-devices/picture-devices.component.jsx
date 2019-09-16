@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { Element } from 'react-scroll';
 import { useSelector } from 'react-redux';
 
+import { selectIsFetching } from '../../redux/picture/picture.selectors';
+
 import CollectionPicture from '../../components/collection-picture/collection-picture.component';
 import Header from '../../components/header/header.component';
 import SmoothScroll from '../../components/smooth-scroll/smooth-scroll.component';
@@ -16,7 +18,7 @@ const VideoT1Loader = WithLoader(VideoT1);
 
 const PictureDevice = ({ history }) => {
     const isVanNghe = history.location.pathname === '/van-nghe' ? true : false;
-    const isFetching = useSelector(({ video: { isFetching } }) => isFetching);
+    const isFetching = useSelector(selectIsFetching);
 
     return (
         <PictureDeviceContainer isVanNghe={isVanNghe}>
