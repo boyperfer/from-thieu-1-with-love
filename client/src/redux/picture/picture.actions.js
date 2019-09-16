@@ -1,8 +1,8 @@
 import PictureActionTypes from './picture.types';
 
-export const fetchPicturesStart = mainFolder => forDevices => ({
+export const fetchPicturesStart = mainFolder => browser => forDevices => ({
     type: PictureActionTypes.FETCH_PICTURES_START,
-    payload: `${mainFolder}/${forDevices}`
+    payload: `${mainFolder}${browser}/${forDevices}`
 });
 
 export const fetchPicturesSuccess = pictures => ({

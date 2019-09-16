@@ -1,6 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import is from 'is_js';
 
 import { fetchPicturesStart } from '../../redux/picture/picture.actions';
 
@@ -18,10 +19,10 @@ const PictureDeviceLoader = WithLoader(PictureDevice);
 const PicturePage = ({ history }) => {
     const isLanscape = useSelector(({ orientation: { isLanscape } }) => isLanscape);
     const isFetching = useSelector(({ picture: { isFetching } }) => isFetching);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
+        const isSafari = is.safari() ? '' : '/chrome';
         const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         const getPicForDevice =
             w <= 900
@@ -29,7 +30,9 @@ const PicturePage = ({ history }) => {
                 : w > 900 && w < 1600
                 ? 'for-big-devices-1200'
                 : 'for-big-devices-1800';
-        const pictureFetch = fetchPicturesStart(history.location.pathname)(getPicForDevice);
+        const pictureFetch = fetchPicturesStart(history.location.pathname)(isSafari)(
+            getPicForDevice
+        );
 
         dispatch(pictureFetch);
         return () => {};
